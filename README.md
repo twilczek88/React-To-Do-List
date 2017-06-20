@@ -1,2 +1,2 @@
 # React-To-Do-List
-Simple to do list made with ReactJS
+Simple to do list made with ReactJS and some JQuery

@@ -1,10 +1,10 @@
 //Konfiguracja Webpack
 const path = require("path");
 module.exports = {
-    entry: "./js/app.jsx",
+    entry: "./js/input.jsx",
     output: {
         path: path.resolve("js"),
-        filename: "out.js"
+        filename: "output.js"
     },
     watch: true,
     module: {
