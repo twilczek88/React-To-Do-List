@@ -2,29 +2,30 @@ import React from 'react';
 
 export default class ToDoItem extends React.Component {
     constructor(props){
-        super(props);
+        super( props );
         this.state = {
-            isChecked: false,
+            isChecked: this.props.isChecked,
         }
     }
 
-    handleCheckClick = () => {
-        this.setState({
-            isChecked: !this.state.isChecked
-        })
-        console.log(this.state.isChecked? `${this.props.title} checked!` : `${this.props.title} unchecked!`);
+    handleCheckClick = ( title ) => {
+        if( typeof this.props.onCheck === 'function' ) {
+            this.props.onCheck( title )
+        } else {
+            console.error( 'bad input, no function parsed' );
+        }
     }
 
     render(){
         return <li>
             <div
-                onClick={this.handleCheckClick}
+                onClick={e => this.handleCheckClick( this.props.title )}
                 style={{
                     width: '20px',
                     height: '20px',
                     backgroundColor: 'purple'
                 }}/>
-            <span>{this.props.title}</span>
+            <span>{ this.props.title }</span>
         </li>
     }
 }
