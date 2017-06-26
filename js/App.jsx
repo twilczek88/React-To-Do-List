@@ -12,11 +12,13 @@ export default class App extends React.Component {
     }
 
     onAddNew = ( item ) => {
-        const items = this.state.items.slice();
-        items.push( item );
-        this.setState({
-            items: items
-        });
+        if( item.title != '' ) {
+            const items = this.state.items.slice();
+            items.push( item );
+            this.setState({
+                items: items
+            });
+        }
     }
 
     onCheck = ( id ) => {
@@ -47,6 +49,15 @@ export default class App extends React.Component {
         })
     }
 
+    removeAll = () => {
+        const items = this.state.items.filter( el => {
+            return el.isChecked === false;
+        });
+        this.setState({
+            items : items
+        });
+    }
+
     render(){
         return <div>
             <Header/>
@@ -57,6 +68,7 @@ export default class App extends React.Component {
             />
         <NewToDo
                 onAddNew = { this.onAddNew }
+                removeAll = { this.removeAll }
             />
         </div>
     }

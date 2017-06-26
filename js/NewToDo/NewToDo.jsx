@@ -18,13 +18,21 @@ export default class NewToDo extends React.Component {
             const id = this.state.item.id + 1;
             this.setState({
                 item : {
-                    title: this.state.item.title,
+                    title: '',
                     isChecked: this.state.item.isChecked,
                     id : id
                 }
             });
         } else {
             console.error('not a function');
+        }
+    }
+
+    handleRemoveAllDoneClick = () => {
+        if( typeof this.props.removeAll === 'function' ){
+            this.props.removeAll();
+        } else {
+            console.error('expected a function');
         }
     }
 
@@ -39,7 +47,7 @@ export default class NewToDo extends React.Component {
     }
 
     render(){
-        return <li>
+        return <div>
             <input
                 type = 'text'
                 value = { this.state.item.title }
@@ -47,8 +55,12 @@ export default class NewToDo extends React.Component {
             />
             <button
                 onClick = { e => this.handleAddClick( this.state.item )}>
-            Add
+                Add
             </button>
-        </li>
+            <button
+                onClick = { this.handleRemoveAllDoneClick }>
+                remove all completed
+            </button>
+        </div>
     }
 }
