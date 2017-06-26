@@ -19,12 +19,32 @@ export default class App extends React.Component {
         });
     }
 
-    onCheck = ( index ) => {
+    onCheck = ( id ) => {
         const items = this.state.items.slice();
+        let index;
+        items.forEach((el, i) => {
+            if( items[i].id === id ) {
+                index = i;
+            }
+        });
         items[index].isChecked = !items[index].isChecked;
         this.setState({
             items: items
+        })
+    }
+
+    onRemove = ( id ) => {
+        const items = this.state.items.slice();
+        let index;
+        items.forEach((el, i) => {
+            if( items[i].id === id ) {
+                index = i;
+            }
         });
+        items.splice(index, 1);
+        this.setState({
+            items: items
+        })
     }
 
     render(){
@@ -33,8 +53,9 @@ export default class App extends React.Component {
             <ToDoList
                 items = { this.state.items }
                 onCheck = { this.onCheck }
+                onRemove = { this.onRemove }
             />
-            <NewToDo
+        <NewToDo
                 onAddNew = { this.onAddNew }
             />
         </div>

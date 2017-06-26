@@ -7,29 +7,51 @@ export default class ToDoItem extends React.Component {
             item: {
                 title: this.props.item.title,
                 isChecked: this.props.item.isChecked,
-                count: this.props.item.count
+                id: this.props.item.id
             }
         }
     }
 
-    handleCheckClick = ( index ) => {
+    handleCheckClick = ( id ) => {
         if( typeof this.props.onCheck === 'function' ) {
-            this.props.onCheck( index )
+            this.props.onCheck( id );
         } else {
             console.error( 'bad input, no function parsed' );
         }
     }
 
+    handleRemoveClick = ( id ) => {
+        if( typeof this.props.onRemove == 'function' ){
+            this.props.onRemove( id );
+        } else {
+            console.error('bad props! no function passed');
+        }
+    }
+
     render(){
-        return <li style={{display: 'flex'}}>
-            <div
-                onClick={e => this.handleCheckClick( this.state.item.count )}
-                style={{
+            let style;
+            if ( this.props.item.isChecked ) {
+                style = {
                     width: '20px',
                     height: '20px',
                     backgroundColor: 'purple'
-                }}/>
+                }
+            } else {
+                style = {
+                    width: '20px',
+                    height: '20px',
+                    border: '1px solid purple'
+                }
+            }
+
+        return <li style={{display: 'flex'}}>
+            <div
+                onClick={ e => this.handleCheckClick( this.state.item.id )}
+                style={style}/>
             <span>{ this.state.item.title }</span>
+            <button onClick={ e => this.handleRemoveClick( this.state.item.id )}>
+                remove
+            </button>
         </li>
     }
 }

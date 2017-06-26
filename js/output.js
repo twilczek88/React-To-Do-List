@@ -2958,16 +2958,6 @@ module.exports = reactProdInvariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = __webpack_require__(18);
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3244,7 +3234,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3260,7 +3250,7 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(20);
 var EventPluginUtils = __webpack_require__(36);
 
 var accumulateInto = __webpack_require__(68);
@@ -3384,7 +3374,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3435,7 +3425,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3497,6 +3487,16 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(18);
+
 
 /***/ }),
 /* 25 */
@@ -4129,7 +4129,7 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 var ViewportMetrics = __webpack_require__(67);
 
 var getEventModifierState = __webpack_require__(44);
@@ -5607,7 +5607,7 @@ module.exports = ReactErrorUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(11);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactUpdates = __webpack_require__(10);
 
@@ -7828,7 +7828,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(124);
 var ReactDOMFeatureFlags = __webpack_require__(126);
 var ReactFeatureFlags = __webpack_require__(61);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(146);
 var ReactReconciler = __webpack_require__(17);
@@ -9762,7 +9762,7 @@ module.exports = getIteratorFn;
 "use strict";
 
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -9824,7 +9824,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -9864,9 +9864,29 @@ var App = function (_React$Component) {
             });
         };
 
-        _this.onCheck = function (index) {
+        _this.onCheck = function (id) {
             var items = _this.state.items.slice();
+            var index = void 0;
+            items.forEach(function (el, i) {
+                if (items[i].id === id) {
+                    index = i;
+                }
+            });
             items[index].isChecked = !items[index].isChecked;
+            _this.setState({
+                items: items
+            });
+        };
+
+        _this.onRemove = function (id) {
+            var items = _this.state.items.slice();
+            var index = void 0;
+            items.forEach(function (el, i) {
+                if (items[i].id === id) {
+                    index = i;
+                }
+            });
+            items.splice(index, 1);
             _this.setState({
                 items: items
             });
@@ -9887,7 +9907,8 @@ var App = function (_React$Component) {
                 _react2.default.createElement(_Header2.default, null),
                 _react2.default.createElement(_ToDoList2.default, {
                     items: this.state.items,
-                    onCheck: this.onCheck
+                    onCheck: this.onCheck,
+                    onRemove: this.onRemove
                 }),
                 _react2.default.createElement(_NewToDo2.default, {
                     onAddNew: this.onAddNew
@@ -9914,7 +9935,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -9964,7 +9985,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -9987,9 +10008,13 @@ var NewToDo = function (_React$Component) {
         _this.handleAddClick = function (item) {
             if (typeof _this.props.onAddNew === 'function') {
                 _this.props.onAddNew(item);
-                var count = _this.state.item.count++;
+                var id = _this.state.item.id + 1;
                 _this.setState({
-                    count: count
+                    item: {
+                        title: _this.state.item.title,
+                        isChecked: _this.state.item.isChecked,
+                        id: id
+                    }
                 });
             } else {
                 console.error('not a function');
@@ -10000,17 +10025,17 @@ var NewToDo = function (_React$Component) {
             _this.setState({
                 item: {
                     title: e.target.value,
-                    count: _this.state.item.count,
-                    isChecked: false
+                    isChecked: false,
+                    id: _this.state.item.id
                 }
             });
         };
 
         _this.state = {
             item: {
-                count: -1,
                 title: '',
-                isChecked: false
+                isChecked: false,
+                id: 0
             }
         };
         return _this;
@@ -10034,9 +10059,16 @@ var NewToDo = function (_React$Component) {
                     {
                         onClick: function onClick(e) {
                             return _this2.handleAddClick(_this2.state.item);
-                        }
-                    },
+                        } },
                     'Add'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    {
+                        onClick: function onClick(e) {
+                            return _this2.handleRemoveDoneClick;
+                        } },
+                    'Remove all completed'
                 )
             );
         }
@@ -10060,7 +10092,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -10080,11 +10112,19 @@ var ToDoItem = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ToDoItem.__proto__ || Object.getPrototypeOf(ToDoItem)).call(this, props));
 
-        _this.handleCheckClick = function (index) {
+        _this.handleCheckClick = function (id) {
             if (typeof _this.props.onCheck === 'function') {
-                _this.props.onCheck(index);
+                _this.props.onCheck(id);
             } else {
                 console.error('bad input, no function parsed');
+            }
+        };
+
+        _this.handleRemoveClick = function (id) {
+            if (typeof _this.props.onRemove == 'function') {
+                _this.props.onRemove(id);
+            } else {
+                console.error('bad props! no function passed');
             }
         };
 
@@ -10092,7 +10132,7 @@ var ToDoItem = function (_React$Component) {
             item: {
                 title: _this.props.item.title,
                 isChecked: _this.props.item.isChecked,
-                count: _this.props.item.count
+                id: _this.props.item.id
             }
         };
         return _this;
@@ -10103,22 +10143,40 @@ var ToDoItem = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
+            var style = void 0;
+            if (this.props.item.isChecked) {
+                style = {
+                    width: '20px',
+                    height: '20px',
+                    backgroundColor: 'purple'
+                };
+            } else {
+                style = {
+                    width: '20px',
+                    height: '20px',
+                    border: '1px solid purple'
+                };
+            }
+
             return _react2.default.createElement(
                 'li',
                 { style: { display: 'flex' } },
                 _react2.default.createElement('div', {
                     onClick: function onClick(e) {
-                        return _this2.handleCheckClick(_this2.state.item.count);
+                        return _this2.handleCheckClick(_this2.state.item.id);
                     },
-                    style: {
-                        width: '20px',
-                        height: '20px',
-                        backgroundColor: 'purple'
-                    } }),
+                    style: style }),
                 _react2.default.createElement(
                     'span',
                     null,
                     this.state.item.title
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: function onClick(e) {
+                            return _this2.handleRemoveClick(_this2.state.item.id);
+                        } },
+                    'remove'
                 )
             );
         }
@@ -10142,7 +10200,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -10180,10 +10238,11 @@ var ToDoList = function (_React$Component) {
                 return el.isChecked == false;
             }).map(function (el) {
                 return _react2.default.createElement(_ToDoItem2.default, {
-                    key: el.count,
+                    key: el.id,
                     item: el,
                     onAddNew: _this2.props.onAddNew,
-                    onCheck: _this2.props.onCheck
+                    onCheck: _this2.props.onCheck,
+                    onRemove: _this2.props.onRemove
                 });
             });
 
@@ -10191,10 +10250,11 @@ var ToDoList = function (_React$Component) {
                 return el.isChecked == true;
             }).map(function (el) {
                 return _react2.default.createElement(_ToDoItem2.default, {
-                    key: el.count,
+                    key: el.id,
                     item: el,
                     onAddNew: _this2.props.onAddNew,
-                    onCheck: _this2.props.onCheck
+                    onCheck: _this2.props.onCheck,
+                    onRemove: _this2.props.onRemove
                 });
             });
 
@@ -12661,7 +12721,7 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var FallbackCompositionState = __webpack_require__(117);
 var SyntheticCompositionEvent = __webpack_require__(160);
@@ -13271,8 +13331,8 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(21);
-var EventPropagators = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(20);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
@@ -13671,7 +13731,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticMouseEvent = __webpack_require__(28);
 
@@ -14314,7 +14374,7 @@ var React = __webpack_require__(18);
 var ReactComponentEnvironment = __webpack_require__(39);
 var ReactCurrentOwner = __webpack_require__(11);
 var ReactErrorUtils = __webpack_require__(40);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(65);
 var ReactReconciler = __webpack_require__(17);
@@ -15341,7 +15401,7 @@ var DOMLazyTree = __webpack_require__(16);
 var DOMNamespaces = __webpack_require__(35);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(57);
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(20);
 var EventPluginRegistry = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(27);
 var ReactDOMComponentFlags = __webpack_require__(58);
@@ -18448,7 +18508,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(20);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -18685,7 +18745,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(20);
 var EventPluginUtils = __webpack_require__(36);
 var ReactComponentEnvironment = __webpack_require__(39);
 var ReactEmptyComponent = __webpack_require__(60);
@@ -18824,7 +18884,7 @@ module.exports = ReactMarkupChecksum;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(39);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(11);
@@ -20248,7 +20308,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInputSelection = __webpack_require__(63);
@@ -20445,7 +20505,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(50);
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticAnimationEvent = __webpack_require__(158);
 var SyntheticClipboardEvent = __webpack_require__(159);
@@ -20456,7 +20516,7 @@ var SyntheticMouseEvent = __webpack_require__(28);
 var SyntheticDragEvent = __webpack_require__(161);
 var SyntheticTouchEvent = __webpack_require__(165);
 var SyntheticTransitionEvent = __webpack_require__(166);
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 var SyntheticWheelEvent = __webpack_require__(167);
 
 var emptyFunction = __webpack_require__(9);
@@ -20842,7 +20902,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
 /**
  * @interface FocusEvent
@@ -20925,7 +20985,7 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
 var getEventCharCode = __webpack_require__(43);
 var getEventKey = __webpack_require__(173);
@@ -21014,7 +21074,7 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
 var getEventModifierState = __webpack_require__(44);
 
@@ -21395,7 +21455,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(11);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactInstanceMap = __webpack_require__(22);
 
 var getHostComponentFromComposite = __webpack_require__(70);
 var invariant = __webpack_require__(1);
