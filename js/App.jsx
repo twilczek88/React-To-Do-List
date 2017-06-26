@@ -7,25 +7,23 @@ export default class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            id: 0,
-            newTitle: '',
-            isChecked: false
+            items: [],
         };
     }
 
-    onAddNew = ( title ) => {
+    onAddNew = ( item ) => {
+        const items = this.state.items.slice();
+        items.push( item );
         this.setState({
-            isChecked : false,
-            newTitle: title,
-            id: this.state.id + 1
+            items: items
         });
     }
 
-    onCheck = ( title ) => {
+    onCheck = ( index ) => {
+        const items = this.state.items.slice();
+        items[index].isChecked = !items[index].isChecked;
         this.setState({
-            id: this.state.id + 1,
-            isChecked: !this.state.isChecked,
-            newTitle: title
+            items: items
         });
     }
 
@@ -33,9 +31,7 @@ export default class App extends React.Component {
         return <div>
             <Header/>
             <ToDoList
-                id = { this.state.id }
-                newTitle = { this.state.newTitle }
-                isChecked = { this.state.isChecked }
+                items = { this.state.items }
                 onCheck = { this.onCheck }
             />
             <NewToDo

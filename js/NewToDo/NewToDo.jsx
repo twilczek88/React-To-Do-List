@@ -4,13 +4,21 @@ export default class NewToDo extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            title: ''
+            item: {
+                count: -1,
+                title: '',
+                isChecked: false
+            }
         }
     }
 
-    handleAddClick = ( title ) => {
+    handleAddClick = ( item ) => {
         if( typeof this.props.onAddNew === 'function' ) {
-            this.props.onAddNew( title )
+            this.props.onAddNew( item )
+            let count = this.state.item.count++;
+            this.setState({
+                count: count
+            });
         } else {
             console.error('not a function');
         }
@@ -18,7 +26,11 @@ export default class NewToDo extends React.Component {
 
     handleInputChange = ( e ) => {
         this.setState({
-            title: e.target.value
+            item: {
+                title: e.target.value,
+                count: this.state.item.count,
+                isChecked: false
+            }
         });
     }
 
@@ -26,11 +38,11 @@ export default class NewToDo extends React.Component {
         return <li>
             <input
                 type = 'text'
-                value = { this.state.title }
+                value = { this.state.item.title }
                 onChange = { this.handleInputChange }
             />
             <button
-                onClick = { e => this.handleAddClick( this.state.title )}
+                onClick = { e => this.handleAddClick( this.state.item )}
             >
                 Add
             </button>

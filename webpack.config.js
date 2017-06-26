@@ -1,7 +1,7 @@
 //Konfiguracja Webpack
 const path = require("path");
 module.exports = {
-    entry: "./js/input.jsx",
+    entry: ['./js/input.jsx', './css/main.scss'],
     output: {
         path: path.resolve("js"),
         filename: "output.js"
@@ -20,7 +20,7 @@ module.exports = {
             {
                 //sudo npm install style-loader css-loader --save-dev
                 //sudo npm install node-sass sass-loader --save-dev
-                test: /\.css$/,
+                test: /\.scss$/,
                 loader: ['style-loader', 'css-loader', 'sass-loader']
 
             }

@@ -4,28 +4,32 @@ export default class ToDoItem extends React.Component {
     constructor(props){
         super( props );
         this.state = {
-            isChecked: this.props.isChecked,
+            item: {
+                title: this.props.item.title,
+                isChecked: this.props.item.isChecked,
+                count: this.props.item.count
+            }
         }
     }
 
-    handleCheckClick = ( title ) => {
+    handleCheckClick = ( index ) => {
         if( typeof this.props.onCheck === 'function' ) {
-            this.props.onCheck( title )
+            this.props.onCheck( index )
         } else {
             console.error( 'bad input, no function parsed' );
         }
     }
 
     render(){
-        return <li>
+        return <li style={{display: 'flex'}}>
             <div
-                onClick={e => this.handleCheckClick( this.props.title )}
+                onClick={e => this.handleCheckClick( this.state.item.count )}
                 style={{
                     width: '20px',
                     height: '20px',
                     backgroundColor: 'purple'
                 }}/>
-            <span>{ this.props.title }</span>
+            <span>{ this.state.item.title }</span>
         </li>
     }
 }
