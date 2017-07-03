@@ -1,1 +1,12 @@
 
+header {
+    li {
+        display: block;
+        width: 40%;
+        line-height: 1.5rem;
+        background-color: red;
+        &:hover {
+            background-color: pink;
+        }
+    }
+}
