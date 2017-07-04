@@ -1,5 +1,13 @@
+html {
+    overflow: hidden;
+}
+
+* {
+    font-family: sans-serif;
+}
+
 .button {
     height: 2rem;
     width: 2rem;
-    background: violet;
+    // background: violet;
 }

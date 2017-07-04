@@ -1,7 +1,16 @@
-li {
-    margin: 5px 0;
+.wrapper {
+    float: left;
+    li {
+        margin: 5px 0;
 
-    div, span {
-        float: left;
+        div, span {
+            float: left;
+        }
     }
+
+}
+
+.toDoList ul {
+    overflow-y: scroll;
+    height: 10vh;
 }

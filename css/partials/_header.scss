@@ -1,12 +1,12 @@
 
 header {
+    width: 25vw;
+    height: 100vh;
+    float: left;
     li {
-        display: block;
-        width: 40%;
-        line-height: 1.5rem;
-        background-color: red;
-        &:hover {
-            background-color: pink;
-        }
+        cursor: pointer;
+    }
+    .hamburger {
+        cursor: pointer;
     }
 }

@@ -64,17 +64,20 @@ export default class App extends React.Component {
 
     render() {
         if (this.state.isAddNewShown) {
-            return <div>
+            return <div className = 'clearfix'>
                 <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+                <div className='wrapper'>
+                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                    <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+                </div>
             </div>
         } else {
-            return <div>
+            return <div className = 'clearfix'>
                 <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                <div className='wrapper'>
+                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                </div>
             </div>
         }
-
     }
 }

@@ -35,11 +35,10 @@ export default class ToDoList extends React.Component {
             />
         });
 
-        return <div>
+        return <div className='toDoList'>
             <h1>I'm the main list</h1>
             <ul>
                 { toDoItems }
-                <hr/>
                 { doneItems }
             </ul>
         </div>
