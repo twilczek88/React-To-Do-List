@@ -1,0 +1,15 @@
+.newInput {
+    // padding: $marginSmall;
+    padding-top: .2rem;
+    padding-left: $marginSmall;
+    background: $mainColor;
+    height: 2rem;
+    input {
+        // background-color: #fff;
+        // border: 2px solid darken($mainColor,20);
+
+        padding: $marginSmall;
+        border: none;
+        margin-right: $marginSmall;
+    }
+}

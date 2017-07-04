@@ -1,16 +1,32 @@
-.wrapper {
+.container {
     float: left;
-    li {
-        margin: 5px 0;
 
-        div, span {
-            float: left;
+    .toDoList ul {
+        overflow-y: scroll;
+        width: 80vw;
+        background: lighten($mainColor, 30);
+        li {
+            background: lighten($mainColor, 10);
+            padding: $marginSmall 0;
+            padding-left: $marginSmall;
+            div, span {
+                float: left;
+            }
+            span {
+                min-width: 150px;
+                line-height: $itemHeight; //item-line-height
+                margin: 0 .5rem;
+            }
+            &:nth-of-type(2n + 1) {
+                background: lighten($mainColor, 20);
+            }
         }
     }
 
-}
-
-.toDoList ul {
-    overflow-y: scroll;
-    height: 10vh;
+    @media #{$mediumScreen} {
+        float: none;
+        .toDoList ul {
+            width: 100vw;
+        }
+    }
 }

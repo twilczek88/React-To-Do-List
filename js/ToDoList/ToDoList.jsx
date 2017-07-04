@@ -35,8 +35,7 @@ export default class ToDoList extends React.Component {
             />
         });
 
-        return <div className='toDoList'>
-            <h1>I'm the main list</h1>
+        return <div  className='toDoList'>
             <ul>
                 { toDoItems }
                 { doneItems }

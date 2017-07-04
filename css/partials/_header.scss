@@ -1,12 +1,33 @@
-
+h1 {
+    line-height: 2rem;
+    text-indent: .25rem;
+    font-size: 1.8rem;
+    color: $mainColor;
+}
 header {
-    width: 25vw;
+    width: 20vw;
     height: 100vh;
     float: left;
     li {
         cursor: pointer;
+        line-height: $itemHeight;
+        background: ligthen($mainColor, 20);
+        &:hover {
+            background: $mainColor;
+            color: #fff;
+        }
     }
     .hamburger {
+        svg {
+            background-color: ligthen($mainColor, 80);
+        }
         cursor: pointer;
+        background-color: $mainColor;
+        width: 100%;
+    }
+    @media #{$mediumScreen} {
+        float: none;
+        height: 100%;
+        width: 100vw;
     }
 }

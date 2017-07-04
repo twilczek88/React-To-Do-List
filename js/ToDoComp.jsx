@@ -9,8 +9,27 @@ export default class App extends React.Component {
         this.state = {
             items: [],
             isAddNewShown: false,
+            mobile: false,
             id: 0
         };
+    }
+
+    componentWillMount() {
+        const mobile = window.matchMedia( 'screen and (max-width: 640px)' );
+
+        (() => {
+            if (mobile.matches) {
+                console.log('matches!');
+                this.setState({
+                    mobile: true
+                });
+            } else {
+                console.log('doesn\'t match!');
+                this.setState({
+                    mobile: false
+                });
+            }
+        })();
     }
 
     onAddNew = (item) => {
@@ -63,21 +82,51 @@ export default class App extends React.Component {
     }
 
     render() {
-        if (this.state.isAddNewShown) {
-            return <div className = 'clearfix'>
-                <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                <div className='wrapper'>
-                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                    <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+        const header = <h1>
+            React to-do list
+        </h1>
+
+        //for small-screen
+        if(this.state.mobile) {
+            if (this.state.isAddNewShown) {
+                return <div className = 'wrapper clearfix'>
+                    {header}
+                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                    <div className='container'>
+                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                        <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+                    </div>
                 </div>
-            </div>
+            } else {
+                return <div className = 'wrapper clearfix'>
+                    {header}
+                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                    <div className='container'>
+                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                    </div>
+                </div>
+            }
+
+        //for wide-screen
         } else {
-            return <div className = 'clearfix'>
-                <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                <div className='wrapper'>
-                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+            if (this.state.isAddNewShown) {
+                return <div className = 'wrapper clearfix'>
+                    {header}
+                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                    <div className='container'>
+                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                        <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+                    </div>
                 </div>
-            </div>
+            } else {
+                return <div className = 'wrapper clearfix'>
+                    {header}
+                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                    <div className='container'>
+                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
+                    </div>
+                </div>
+            }
         }
     }
 }

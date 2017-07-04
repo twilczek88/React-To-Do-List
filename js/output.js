@@ -9777,6 +9777,7 @@ var _ToDoComp2 = _interopRequireDefault(_ToDoComp);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
+
     _reactDom2.default.render(_react2.default.createElement(_ToDoComp2.default, null), document.querySelector('#app'));
 });
 
@@ -10071,7 +10072,7 @@ var NewToDo = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'newInput' },
                 _react2.default.createElement('input', { type: 'text', value: this.state.item.title, onChange: this.handleInputChange }),
                 _react2.default.createElement(
                     'button',
@@ -10086,19 +10087,6 @@ var NewToDo = function (_React$Component) {
 
     return NewToDo;
 }(_react2.default.Component);
-
-// handleRemoveAllDoneClick = () => {
-//     if (typeof this.props.removeAll === 'function') {
-//         this.props.removeAll();
-//     } else {
-//         console.error('expected a function');
-//     }
-// }
-
-// <button onClick={this.handleRemoveAllDoneClick}>
-//     remove all completed
-// </button>
-
 
 exports.default = NewToDo;
 
@@ -10199,37 +10187,99 @@ var App = function (_React$Component) {
         _this.state = {
             items: [],
             isAddNewShown: false,
+            mobile: false,
             id: 0
         };
         return _this;
     }
 
     _createClass(App, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            var mobile = window.matchMedia('screen and (max-width: 640px)');
+
+            (function () {
+                if (mobile.matches) {
+                    console.log('matches!');
+                    _this2.setState({
+                        mobile: true
+                    });
+                } else {
+                    console.log('doesn\'t match!');
+                    _this2.setState({
+                        mobile: false
+                    });
+                }
+            })();
+        }
+    }, {
         key: 'render',
         value: function render() {
-            if (this.state.isAddNewShown) {
-                return _react2.default.createElement(
-                    'div',
-                    { className: 'clearfix' },
-                    _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                    _react2.default.createElement(
+            var header = _react2.default.createElement(
+                'h1',
+                null,
+                'React to-do list'
+            );
+
+            //for small-screen
+            if (this.state.mobile) {
+                if (this.state.isAddNewShown) {
+                    return _react2.default.createElement(
                         'div',
-                        { className: 'wrapper' },
-                        _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove }),
-                        _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id })
-                    )
-                );
+                        { className: 'wrapper clearfix' },
+                        header,
+                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'container' },
+                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove }),
+                            _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id })
+                        )
+                    );
+                } else {
+                    return _react2.default.createElement(
+                        'div',
+                        { className: 'wrapper clearfix' },
+                        header,
+                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'container' },
+                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
+                        )
+                    );
+                }
+
+                //for wide-screen
             } else {
-                return _react2.default.createElement(
-                    'div',
-                    { className: 'clearfix' },
-                    _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                    _react2.default.createElement(
+                if (this.state.isAddNewShown) {
+                    return _react2.default.createElement(
                         'div',
-                        { className: 'wrapper' },
-                        _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
-                    )
-                );
+                        { className: 'wrapper clearfix' },
+                        header,
+                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'container' },
+                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove }),
+                            _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id })
+                        )
+                    );
+                } else {
+                    return _react2.default.createElement(
+                        'div',
+                        { className: 'wrapper clearfix' },
+                        header,
+                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'container' },
+                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
+                        )
+                    );
+                }
             }
         }
     }]);
@@ -10445,11 +10495,6 @@ var ToDoList = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'toDoList' },
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    'I\'m the main list'
-                ),
                 _react2.default.createElement(
                     'ul',
                     null,
@@ -11354,7 +11399,7 @@ exports = module.exports = __webpack_require__(92)(undefined);
 
 
 // module
-exports.push([module.i, "html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\nhtml {\n  overflow-y: scroll; }\n\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  white-space: pre-wrap;\n  white-space: pre-line;\n  word-wrap: break-word; }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\nbutton, input, select, textarea {\n  margin: 0; }\n\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  overflow: hidden; }\n\n* {\n  font-family: sans-serif; }\n\n.button {\n  height: 2rem;\n  width: 2rem; }\n\nheader {\n  width: 25vw;\n  height: 100vh;\n  float: left; }\n  header li {\n    cursor: pointer; }\n  header .hamburger {\n    cursor: pointer; }\n\n.wrapper {\n  float: left; }\n  .wrapper li {\n    margin: 5px 0; }\n    .wrapper li div, .wrapper li span {\n      float: left; }\n\n.toDoList ul {\n  overflow-y: scroll;\n  height: 10vh; }\n", ""]);
+exports.push([module.i, "html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\nhtml {\n  overflow-y: scroll; }\n\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  white-space: pre-wrap;\n  white-space: pre-line;\n  word-wrap: break-word; }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\nbutton, input, select, textarea {\n  margin: 0; }\n\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  overflow: hidden; }\n  html:not(input) {\n    user-select: none;\n    cursor: default; }\n\n* {\n  font-family: sans-serif; }\n\nbody {\n  background: #e4f2f1; }\n\n.button {\n  height: 2rem;\n  width: 2rem; }\n\n.container {\n  height: 100vh; }\n\nh1 {\n  line-height: 2rem;\n  text-indent: .25rem;\n  font-size: 1.8rem;\n  color: #5ab0ab; }\n\nheader {\n  width: 20vw;\n  height: 100vh;\n  float: left; }\n  header li {\n    cursor: pointer;\n    line-height: 1.5rem;\n    background: ligthen(#5ab0ab, 20); }\n    header li:hover {\n      background: #5ab0ab;\n      color: #fff; }\n  header .hamburger {\n    cursor: pointer;\n    background-color: #5ab0ab;\n    width: 100%; }\n    header .hamburger svg {\n      background-color: ligthen(#5ab0ab, 80); }\n  @media (max-width: 640px) {\n    header {\n      float: none;\n      height: 100%;\n      width: 100vw; } }\n\n.container {\n  float: left; }\n  .container .toDoList ul {\n    overflow-y: scroll;\n    width: 80vw;\n    background: #c1e2e0; }\n    .container .toDoList ul li {\n      background: #7cc1bd;\n      padding: 0.25rem 0;\n      padding-left: 0.25rem; }\n      .container .toDoList ul li div, .container .toDoList ul li span {\n        float: left; }\n      .container .toDoList ul li span {\n        min-width: 150px;\n        line-height: 1.5rem;\n        margin: 0 .5rem; }\n      .container .toDoList ul li:nth-of-type(2n + 1) {\n        background: #9fd1ce; }\n  @media (max-width: 640px) {\n    .container {\n      float: none; }\n      .container .toDoList ul {\n        width: 100vw; } }\n\n.newInput {\n  padding-top: .2rem;\n  padding-left: 0.25rem;\n  background: #5ab0ab;\n  height: 2rem; }\n  .newInput input {\n    padding: 0.25rem;\n    border: none;\n    margin-right: 0.25rem; }\n", ""]);
 
 // exports
 

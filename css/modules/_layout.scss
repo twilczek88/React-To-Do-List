@@ -1,13 +1,28 @@
 html {
     overflow: hidden;
+    &:not(input){
+        user-select: none;
+        cursor: default;
+    }
 }
 
 * {
     font-family: sans-serif;
 }
 
+body {
+    background: lighten($mainColor, 40);
+}
+
 .button {
     height: 2rem;
     width: 2rem;
-    // background: violet;
+}
+
+.container {
+    height: 100vh;
+}
+
+.wrapper {
+
 }

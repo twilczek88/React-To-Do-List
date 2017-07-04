@@ -28,8 +28,6 @@ export default class NewToDo extends React.Component {
         }
     }
 
-
-
     handleInputChange = (e) => {
         this.setState({
             item: {
@@ -41,7 +39,7 @@ export default class NewToDo extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className='newInput'>
             <input type='text' value={this.state.item.title} onChange={this.handleInputChange}/>
             <button onClick= { e => this.handleAddClick( this.state.item )}>
                 Add
@@ -49,15 +47,3 @@ export default class NewToDo extends React.Component {
         </div>
     }
 }
-
-// handleRemoveAllDoneClick = () => {
-//     if (typeof this.props.removeAll === 'function') {
-//         this.props.removeAll();
-//     } else {
-//         console.error('expected a function');
-//     }
-// }
-
-// <button onClick={this.handleRemoveAllDoneClick}>
-//     remove all completed
-// </button>
