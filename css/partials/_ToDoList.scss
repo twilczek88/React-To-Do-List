@@ -1,20 +1,23 @@
 .container {
+
     float: left;
 
     .toDoList ul {
         overflow-y: scroll;
         width: 80vw;
         background: lighten($mainColor, 30);
+
+        .checker {
+            float: left;
+            cursor: pointer;
+        }
         li {
             background: lighten($mainColor, 10);
-            padding: $marginSmall 0;
+            // padding: $marginSmall 0;
             padding-left: $marginSmall;
-            div, span {
-                float: left;
-            }
             span {
                 min-width: 150px;
-                line-height: $itemHeight; //item-line-height
+                line-height: 2rem; //item-line-height
                 margin: 0 .5rem;
             }
             &:nth-of-type(2n + 1) {

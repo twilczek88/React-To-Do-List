@@ -10072,14 +10072,14 @@ var NewToDo = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'newInput' },
+                { className: 'newInput clearfix' },
                 _react2.default.createElement('input', { type: 'text', value: this.state.item.title, onChange: this.handleInputChange }),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick(e) {
+                    'div',
+                    { className: 'ls-button', onClick: function onClick(e) {
                             return _this2.handleAddClick(_this2.state.item);
                         } },
-                    'Add'
+                    'add'
                 )
             );
         }
@@ -10363,13 +10363,9 @@ var ToDoItem = function (_React$Component) {
                     // backgroundColor: 'purple'
                 };
                 icon = _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'svg',
-                        { width: '100%', height: '100%', viewBox: '0 0 1792 1792', xmlns: 'http://www.w3.org/2000/svg' },
-                        _react2.default.createElement('path', { d: 'M813 1299l614-614q19-19 19-45t-19-45l-102-102q-19-19-45-19t-45 19l-467 467-211-211q-19-19-45-19t-45 19l-102 102q-19 19-19 45t19 45l358 358q19 19 45 19t45-19zm851-883v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z' })
-                    )
+                    'svg',
+                    { className: 'icon', width: '100%', height: '100%', viewBox: '0 0 1792 1792', xmlns: 'http://www.w3.org/2000/svg' },
+                    _react2.default.createElement('path', { d: 'M1472 930v318q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q63 0 117 25 15 7 18 23 3 17-9 29l-49 49q-10 10-23 10-3 0-9-2-23-6-45-6h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-254q0-13 9-22l64-64q10-10 23-10 6 0 12 3 20 8 20 29zm231-489l-814 814q-24 24-57 24t-57-24l-430-430q-24-24-24-57t24-57l110-110q24-24 57-24t57 24l263 263 647-647q24-24 57-24t57 24l110 110q24 24 24 57t-24 57z' })
                 );
             } else {
                 style = {
@@ -10378,24 +10374,18 @@ var ToDoItem = function (_React$Component) {
                     // border: '1px solid purple'
                 };
                 icon = _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'svg',
-                        { width: '100%', height: '100%', viewBox: '0 0 1792 1792', xmlns: 'http://www.w3.org/2000/svg' },
-                        _react2.default.createElement('path', { d: 'M1312 256h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-832q0-66-47-113t-113-47zm288 160v832q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q119 0 203.5 84.5t84.5 203.5z' })
-                    )
+                    'svg',
+                    { className: 'icon', width: '100%', height: '100%', viewBox: '0 0 1792 1792', xmlns: 'http://www.w3.org/2000/svg' },
+                    _react2.default.createElement('path', { d: 'M1312 256h-832q-66 0-113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113-47t47-113v-832q0-66-47-113t-113-47zm288 160v832q0 119-84.5 203.5t-203.5 84.5h-832q-119 0-203.5-84.5t-84.5-203.5v-832q0-119 84.5-203.5t203.5-84.5h832q119 0 203.5 84.5t84.5 203.5z' })
                 );
             }
 
             return _react2.default.createElement(
                 'li',
-                { style: {
-                        display: 'flex'
-                    } },
+                { className: 'clearfix' },
                 _react2.default.createElement(
                     'div',
-                    { onClick: function onClick(e) {
+                    { className: 'checker', onClick: function onClick(e) {
                             return _this2.handleCheckClick(_this2.state.item.id);
                         }, style: style },
                     icon
@@ -10406,11 +10396,22 @@ var ToDoItem = function (_React$Component) {
                     this.state.item.title
                 ),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick(e) {
+                    'div',
+                    {
+                        className: 'ls-button',
+                        onClick: function onClick(e) {
                             return _this2.handleRemoveClick(_this2.state.item.id);
                         } },
-                    'remove'
+                    _react2.default.createElement(
+                        'svg',
+                        { className: 'icon', width: '0', height: '100%', viewBox: '0 0 1792 1792', xmlns: 'http://www.w3.org/2000/svg' },
+                        _react2.default.createElement('path', { d: 'M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z' })
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        'remove'
+                    )
                 )
             );
         }
@@ -11399,7 +11400,7 @@ exports = module.exports = __webpack_require__(92)(undefined);
 
 
 // module
-exports.push([module.i, "html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\nhtml {\n  overflow-y: scroll; }\n\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  white-space: pre-wrap;\n  white-space: pre-line;\n  word-wrap: break-word; }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\nbutton, input, select, textarea {\n  margin: 0; }\n\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  overflow: hidden; }\n  html:not(input) {\n    user-select: none;\n    cursor: default; }\n\n* {\n  font-family: sans-serif; }\n\nbody {\n  background: #e4f2f1; }\n\n.button {\n  height: 2rem;\n  width: 2rem; }\n\n.container {\n  height: 100vh; }\n\nh1 {\n  line-height: 2rem;\n  text-indent: .25rem;\n  font-size: 1.8rem;\n  color: #5ab0ab; }\n\nheader {\n  width: 20vw;\n  height: 100vh;\n  float: left; }\n  header li {\n    cursor: pointer;\n    line-height: 1.5rem;\n    background: ligthen(#5ab0ab, 20); }\n    header li:hover {\n      background: #5ab0ab;\n      color: #fff; }\n  header .hamburger {\n    cursor: pointer;\n    background-color: #5ab0ab;\n    width: 100%; }\n    header .hamburger svg {\n      background-color: ligthen(#5ab0ab, 80); }\n  @media (max-width: 640px) {\n    header {\n      float: none;\n      height: 100%;\n      width: 100vw; } }\n\n.container {\n  float: left; }\n  .container .toDoList ul {\n    overflow-y: scroll;\n    width: 80vw;\n    background: #c1e2e0; }\n    .container .toDoList ul li {\n      background: #7cc1bd;\n      padding: 0.25rem 0;\n      padding-left: 0.25rem; }\n      .container .toDoList ul li div, .container .toDoList ul li span {\n        float: left; }\n      .container .toDoList ul li span {\n        min-width: 150px;\n        line-height: 1.5rem;\n        margin: 0 .5rem; }\n      .container .toDoList ul li:nth-of-type(2n + 1) {\n        background: #9fd1ce; }\n  @media (max-width: 640px) {\n    .container {\n      float: none; }\n      .container .toDoList ul {\n        width: 100vw; } }\n\n.newInput {\n  padding-top: .2rem;\n  padding-left: 0.25rem;\n  background: #5ab0ab;\n  height: 2rem; }\n  .newInput input {\n    padding: 0.25rem;\n    border: none;\n    margin-right: 0.25rem; }\n", ""]);
+exports.push([module.i, "html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\nhtml {\n  overflow-y: scroll; }\n\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  white-space: pre-wrap;\n  white-space: pre-line;\n  word-wrap: break-word; }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\nbutton, input, select, textarea {\n  margin: 0; }\n\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  overflow: hidden; }\n  html:not(input) {\n    user-select: none;\n    cursor: default; }\n\n* {\n  font-family: sans-serif;\n  box-sizing: border-box; }\n\nbody {\n  background: #e4f2f1; }\n\n.button {\n  height: 2rem;\n  width: 2rem; }\n\n.ls-button {\n  float: right;\n  transition: all .2s;\n  background: #5ab0ab;\n  cursor: pointer; }\n  .ls-button:hover {\n    color: #fff; }\n  .ls-button:hover .icon {\n    fill: #fff; }\n  .ls-button span {\n    min-width: 0; }\n  @media (max-width: 640px) {\n    .ls-button {\n      float: none;\n      width: 100vw; } }\n\n.icon {\n  transition: all .2s;\n  float: left;\n  margin: .25rem 0;\n  width: 2rem;\n  height: 1.5rem;\n  line-height: 1.5rem;\n  vertical-align: middle; }\n\n.container {\n  height: 100vh; }\n\nh1 {\n  line-height: 2rem;\n  text-indent: .25rem;\n  font-size: 1.8rem;\n  color: #5ab0ab; }\n\nheader {\n  width: 20vw;\n  height: 100vh;\n  float: left; }\n  header li {\n    transition: all .2s;\n    cursor: pointer;\n    line-height: 2rem;\n    background: ligthen(#5ab0ab, 20);\n    border-top: 1px solid #46918d; }\n    header li:hover {\n      background: #5ab0ab;\n      color: #fff; }\n    header li:first-of-type {\n      border-top: none; }\n  header .hamburger {\n    cursor: pointer;\n    background-color: #5ab0ab;\n    width: 100%; }\n    header .hamburger svg {\n      background-color: ligthen(#5ab0ab, 80); }\n  @media (max-width: 640px) {\n    header {\n      float: none;\n      height: 100%;\n      width: 100vw; } }\n\n.container {\n  float: left; }\n  .container .toDoList ul {\n    overflow-y: scroll;\n    width: 80vw;\n    background: #c1e2e0; }\n    .container .toDoList ul .checker {\n      float: left;\n      cursor: pointer; }\n    .container .toDoList ul li {\n      background: #7cc1bd;\n      padding-left: 0.25rem; }\n      .container .toDoList ul li span {\n        min-width: 150px;\n        line-height: 2rem;\n        margin: 0 .5rem; }\n      .container .toDoList ul li:nth-of-type(2n + 1) {\n        background: #9fd1ce; }\n  @media (max-width: 640px) {\n    .container {\n      float: none; }\n      .container .toDoList ul {\n        width: 100vw; } }\n\n.newInput {\n  padding-top: .2rem;\n  padding-left: 0.25rem;\n  background: #5ab0ab;\n  height: 2rem; }\n  .newInput input {\n    float: left;\n    padding: 0.25rem;\n    border: none;\n    margin-right: 0.25rem; }\n  .newInput .ls-button {\n    margin: 0 auto;\n    margin-top: .05rem;\n    width: 3rem;\n    float: left;\n    height: 1.5rem;\n    line-height: 1.5rem;\n    text-align: center;\n    background: #9fd1ce; }\n", ""]);
 
 // exports
 

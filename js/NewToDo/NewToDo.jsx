@@ -39,11 +39,11 @@ export default class NewToDo extends React.Component {
     }
 
     render() {
-        return <div className='newInput'>
+        return <div className='newInput clearfix'>
             <input type='text' value={this.state.item.title} onChange={this.handleInputChange}/>
-            <button onClick= { e => this.handleAddClick( this.state.item )}>
-                Add
-            </button>
+            <div className = 'ls-button' onClick= { e => this.handleAddClick( this.state.item )}>
+                add
+            </div>
         </div>
     }
 }

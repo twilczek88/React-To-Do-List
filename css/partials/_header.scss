@@ -8,14 +8,21 @@ header {
     width: 20vw;
     height: 100vh;
     float: left;
+
     li {
+        transition: all .2s;
         cursor: pointer;
-        line-height: $itemHeight;
+        line-height: 2rem;
         background: ligthen($mainColor, 20);
+        border-top: 1px solid darken($mainColor, 10);
         &:hover {
             background: $mainColor;
             color: #fff;
         }
+        &:first-of-type {
+            border-top: none;
+        }
+
     }
     .hamburger {
         svg {

@@ -8,6 +8,7 @@ html {
 
 * {
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -17,6 +18,38 @@ body {
 .button {
     height: 2rem;
     width: 2rem;
+}
+
+.ls-button {
+    // border-radius: 5px;
+    float: right;
+    transition: all .2s;
+    background: $mainColor;
+    cursor: pointer;
+    &:hover{
+        color: #fff;
+    }
+    &:hover .icon {
+        fill: #fff;
+    }
+    span {
+        min-width: 0;
+    }
+    @media #{$mediumScreen} {
+        float: none;
+        width: 100vw;
+    }
+}
+
+.icon {
+    transition: all .2s;
+
+    float: left;
+    margin: .25rem 0;
+    width: 2rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    vertical-align: middle;
 }
 
 .container {
