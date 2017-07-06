@@ -1,12 +1,9 @@
 .newInput {
-    // padding: $marginSmall;
     padding-top: .2rem;
     padding-left: $marginSmall;
     background: $mainColor;
     height: 2rem;
     input {
-        // background-color: #fff;
-        // border: 2px solid darken($mainColor,20);
         float: left;
         padding: $marginSmall;
         border: none;
@@ -21,10 +18,5 @@
         line-height: 1.5rem;
         text-align: center;
         background: lighten($mainColor, 20);
-        //
-        // span {
-        //     width: 3rem;
-        //     text-align: center;
-        // }
     }
 }

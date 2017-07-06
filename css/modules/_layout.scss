@@ -21,23 +21,18 @@ body {
 }
 
 .ls-button {
-    // border-radius: 5px;
     float: right;
     transition: all .2s;
-    background: $mainColor;
     cursor: pointer;
     &:hover{
         color: #fff;
+
     }
     &:hover .icon {
         fill: #fff;
     }
     span {
         min-width: 0;
-    }
-    @media #{$mediumScreen} {
-        float: none;
-        width: 100vw;
     }
 }
 
@@ -54,8 +49,4 @@ body {
 
 .container {
     height: 100vh;
-}
-
-.wrapper {
-
 }
