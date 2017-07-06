@@ -86,47 +86,23 @@ export default class App extends React.Component {
             React to-do list
         </h1>
 
-        //for small-screen
-        if(this.state.mobile) {
-            if (this.state.isAddNewShown) {
-                return <div className = 'wrapper clearfix'>
-                    {header}
-                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                    <div className='container'>
-                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                        <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
-                    </div>
+    if (this.state.isAddNewShown) {
+            return <div className = 'wrapper clearfix'>
+                {header}
+                <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                <div className='container'>
+                    <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
+                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
                 </div>
-            } else {
-                return <div className = 'wrapper clearfix'>
-                    {header}
-                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                    <div className='container'>
-                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                    </div>
-                </div>
-            }
-
-        //for wide-screen
+            </div>
         } else {
-            if (this.state.isAddNewShown) {
-                return <div className = 'wrapper clearfix'>
-                    {header}
-                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                    <div className='container'>
-                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                        <NewToDo onAddNew={this.onAddNew} removeAll={this.removeAll} id={this.state.id}/>
-                    </div>
+            return <div className = 'wrapper clearfix'>
+                {header}
+                <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
+                <div className='container'>
+                    <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
                 </div>
-            } else {
-                return <div className = 'wrapper clearfix'>
-                    {header}
-                    <Header showNew={this.showNew} onRemoveAll={this.removeAll}/>
-                    <div className='container'>
-                        <ToDoList items={this.state.items} onCheck={this.onCheck} onRemove={this.onRemove}/>
-                    </div>
-                </div>
-            }
+            </div>
         }
     }
 }

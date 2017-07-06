@@ -10223,63 +10223,31 @@ var App = function (_React$Component) {
                 'React to-do list'
             );
 
-            //for small-screen
-            if (this.state.mobile) {
-                if (this.state.isAddNewShown) {
-                    return _react2.default.createElement(
+            if (this.state.isAddNewShown) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'wrapper clearfix' },
+                    header,
+                    _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                    _react2.default.createElement(
                         'div',
-                        { className: 'wrapper clearfix' },
-                        header,
-                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove }),
-                            _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id })
-                        )
-                    );
-                } else {
-                    return _react2.default.createElement(
-                        'div',
-                        { className: 'wrapper clearfix' },
-                        header,
-                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
-                        )
-                    );
-                }
-
-                //for wide-screen
+                        { className: 'container' },
+                        _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id }),
+                        _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
+                    )
+                );
             } else {
-                if (this.state.isAddNewShown) {
-                    return _react2.default.createElement(
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'wrapper clearfix' },
+                    header,
+                    _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
+                    _react2.default.createElement(
                         'div',
-                        { className: 'wrapper clearfix' },
-                        header,
-                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove }),
-                            _react2.default.createElement(_NewToDo2.default, { onAddNew: this.onAddNew, removeAll: this.removeAll, id: this.state.id })
-                        )
-                    );
-                } else {
-                    return _react2.default.createElement(
-                        'div',
-                        { className: 'wrapper clearfix' },
-                        header,
-                        _react2.default.createElement(_Header2.default, { showNew: this.showNew, onRemoveAll: this.removeAll }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
-                        )
-                    );
-                }
+                        { className: 'container' },
+                        _react2.default.createElement(_ToDoList2.default, { items: this.state.items, onCheck: this.onCheck, onRemove: this.onRemove })
+                    )
+                );
             }
         }
     }]);
