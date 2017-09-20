@@ -27,6 +27,8 @@ menu {
 
     }
     .hamburger {
+        height: 2rem;
+        width: 2rem;
         svg {
             background-color: ligthen($mainColor, 80);
         }
