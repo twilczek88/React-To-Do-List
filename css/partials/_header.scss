@@ -27,10 +27,11 @@ menu {
 
     }
     .hamburger {
-        height: 2rem;
-        width: 2rem;
+
         svg {
             background-color: ligthen($mainColor, 80);
+            height: 2rem;
+            width: 2rem;
         }
         cursor: pointer;
         background-color: $mainColor;
